@@ -23,9 +23,16 @@ scene.add(mesh)
  * Sizes
  */
 const sizes = {
-    width: 800,
-    height: 600
+    width: window.innerWidth,
+    height: window.innerHeight
 }
+
+window.addEventListener('resize', () => {
+    
+    // update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+})
 
 /**
  * Camera
@@ -37,6 +44,7 @@ scene.add(camera)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
+// controls.enabled = false
 controls.enableDamping = true
 
 /**

@@ -14,12 +14,20 @@ const scene = new THREE.Scene()
 // Object
 // const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2)
 
-const positionsArray = new Float32Array([
-    // x, y, z
-    0,0,0,
-    0,1,0,
-    1,0,0
-])
+// const positionsArray = new Float32Array([
+//     // x, y, z
+//     0,0,0,
+//     0,1,0,
+//     1,0,0
+// ])
+
+const count = 200
+const positionsArray = new Float32Array(count *  3 * 3)
+
+for(let i = 0; i < count * 3 * 3; i++){
+    positionsArray[i] = Math.random() - 0.5
+}
+
 const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
 
 const geometry = new THREE.BufferGeometry()

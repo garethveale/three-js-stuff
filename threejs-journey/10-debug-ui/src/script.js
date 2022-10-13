@@ -2,6 +2,12 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import gsap from 'gsap'
+import * as dat from 'lil-gui';
+
+/**
+ * Debug
+ */
+const gui = new dat.GUI({ closed: true, width: 400 })
 
 /**
  * Base
@@ -18,7 +24,33 @@ const scene = new THREE.Scene()
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
 const mesh = new THREE.Mesh(geometry, material)
+mesh.visible = true
 scene.add(mesh)
+
+// debug
+gui.add(mesh.position, 'y')
+    .min(-3)
+    .max(3)
+    .step(0.01)
+    .name('red cube Y')
+
+gui
+    .add(mesh, 'visible')
+
+
+gui 
+    .add(mesh.material, 'wireframe')
+
+gui
+    .addColor(material, 'color')
+    
+window.addEventListener('keydown', (event) => {
+    if(event.key === 'h') {
+        if (gui._hidden) 
+            gui.show()
+        else gui.hide()
+    }
+})
 
 /**
  * Sizes

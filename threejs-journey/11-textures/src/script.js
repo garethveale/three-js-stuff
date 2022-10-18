@@ -6,14 +6,14 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 // Textures
 const loadingManager = new THREE.LoadingManager()
 // loading manager callbacks -> applies to all loaders
-loadingManager.onStart = () => {console.log('start')}
-loadingManager.onProgress = () => {console.log('progress')}
-loadingManager.onLoad = () => {console.log('load')}
-loadingManager.onError = () => {console.log('error')}
+// loadingManager.onStart = () => {console.log('start')}
+// loadingManager.onProgress = () => {console.log('progress')}
+// loadingManager.onLoad = () => {console.log('load')}
+// loadingManager.onError = () => {console.log('error')}
 
 const textureLoader = new THREE.TextureLoader()
 const colorTexture = textureLoader.load(
-    '/textures/door/color.jpg',
+    '/textures/minecraft.png',
     () => {console.log('on load')},
     () => {console.log('on progress')},
     () => {console.log('on error')},
@@ -22,8 +22,11 @@ const alphaTexture = textureLoader.load('/textures/door/alpha.jpg')
 const heightTexture = textureLoader.load('/textures/door/height.jpg')
 const normalTexture = textureLoader.load('/textures/door/normal.jpg')
 const ambientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg')
-const metalnessTexture = textureLoader.load('/textures/door/metalnesse.jpg')
+const metalnessTexture = textureLoader.load('/textures/door/metalness.jpg')
 const roughnessTexture = textureLoader.load('/textures/door/roughness.jpg')
+
+// colorTexture.minFilter = THREE.NearestFilter
+colorTexture.magFilter = THREE.NearestFilter
 
 /**
  * Base
@@ -38,6 +41,7 @@ const scene = new THREE.Scene()
  * Object
  */
 const geometry = new THREE.BoxGeometry(1, 1, 1)
+console.log(geometry.attributes)
 // const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
 const material = new THREE.MeshBasicMaterial({ map: colorTexture })
 const mesh = new THREE.Mesh(geometry, material)
